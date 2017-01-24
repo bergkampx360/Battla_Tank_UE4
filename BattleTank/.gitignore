@@ -64,3 +64,6 @@ DerivedDataCache/*
 
 #Ignore StarterContent
 Content/StarterContent/*
+
+#Igrone Visual Studio intellisense cache
+BattleTank/ipch
