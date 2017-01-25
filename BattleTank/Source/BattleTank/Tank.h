@@ -17,8 +17,8 @@ public:
 
 	void AimAt(FVector HitLocation);
 
-	UFUNCTION(BlueprintCallable, Category="Setup")
-	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+		void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -31,4 +31,6 @@ public:
 
 protected:
 	UTankAimingComponent* TankAimingComponent = nullptr;
+	UPROPERTY(EditAnywhere, Category = "Firing")
+		float LaunchSpeed = 10000000; //TODO: Find sensible default
 };
