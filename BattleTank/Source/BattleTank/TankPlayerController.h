@@ -20,12 +20,15 @@ public:
 	ATank* GetControlledTank() const;
 	//Start the tank moving the barrel so that a shot would it where the cross hair intersects the world
 	void AimTowardsCrosshair();
-	UFUNCTION(BlueprintCallable, Category="SunShine")
-	void SetCrossHairLocation(float X, float Y);
+	UFUNCTION(BlueprintCallable, Category = "SunShine")
+		void SetCrossHairLocation(float X, float Y);
 private:
-	//Return an OUT parameter, true if hit landscape
-	bool GetSightRayHitLocation(FVector& HitLocation) const;
 	float CrossHairXLocation = 0.5f;
 	float CrossHairYLocation = 0.3333f;
-
+	UPROPERTY(EditAnywhere)
+		float LineTraceRange = 100000.0f;
+	//Return an OUT parameter, true if hit landscape
+	bool GetSightRayHitLocation(FVector& HitLocation) const;
+	bool GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const;
+	bool GetLookVectorHitLocation(FVector LookDirection, FVector& HitLocation) const;
 };
