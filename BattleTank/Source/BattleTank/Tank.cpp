@@ -42,3 +42,8 @@ void ATank::SetupPlayerInputComponent(class UInputComponent* InputComp)
 
 }
 
+void ATank::Fire()
+{
+	UE_LOG(LogTemp, Warning, TEXT("FIRE!!!"))
+}
+
