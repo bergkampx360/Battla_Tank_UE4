@@ -28,6 +28,11 @@ void ATank::SetTurretReference(UTankTurret* TurretToSet)
 	this->TankAimingComponent->SetTurretReference(TurretToSet);
 }
 
+UTankAimingComponent* ATank::GetTankAimingComponent() const
+{
+	return this->TankAimingComponent;
+}
+
 // Called when the game starts or when spawned
 void ATank::BeginPlay()
 {
