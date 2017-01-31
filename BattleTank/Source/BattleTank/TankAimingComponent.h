@@ -8,6 +8,8 @@
 class UTankBarrel; // Forward Declaration
 class UTankTurret;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnChangingAimingSolution, bool, HasAimingSolution);
+
 UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class BATTLETANK_API UTankAimingComponent : public UActorComponent
 {
@@ -18,6 +20,10 @@ public:
 	UTankAimingComponent();
 	UFUNCTION(BlueprintCallable, Category = "Aiming")
 		bool GetbHasAimingSolution() const;
+
+	UPROPERTY(BlueprintAssignable, Category = "Aiming")
+		FOnChangingAimingSolution OnChangingAimingResult;
+
 	void SetBarrelReference(UTankBarrel* BarrelToSet);
 	void SetTurretReference(UTankTurret* TurretToSet);
 	void AimAt(FVector HitLocation, float LaunchSpeed);
