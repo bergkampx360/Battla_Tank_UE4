@@ -51,7 +51,7 @@ void ATank::SetupPlayerInputComponent(class UInputComponent* InputComp)
 
 void ATank::Fire()
 {
-	bool isReloading = (FPlatformTime::Seconds() - LastFireTime) > ReloadTime;
+	bool isReloading = (FPlatformTime::Seconds() - LastFireTime) > ReloadTimeInSeconds;
 	if (Barrel && isReloading) {
 		//Spawn projectile at the socket location of barrel
 		auto Projectile = GetWorld()->SpawnActor<AProjectile>(
