@@ -32,17 +32,19 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComp) override;
 
+	UFUNCTION(BlueprintCallable, Category = "Firing")
+		void Fire();
+
 protected:
 	UTankAimingComponent* TankAimingComponent = nullptr;
 	UPROPERTY(EditAnywhere, Category = "Firing")
 		float LaunchSpeed = 4000;
-
-	UFUNCTION(BlueprintCallable, Category = "Firing")
-		void Fire();
 
 	UPROPERTY(EditAnywhere, Category = "Setup")
 		TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	//Local barrel reference for projectile
 	UTankBarrel* Barrel = nullptr;
+	float ReloadTime = 3.0f;
+	double LastFireTime = 0;
 };
