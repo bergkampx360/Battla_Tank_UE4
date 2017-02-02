@@ -24,3 +24,11 @@ void UTankMovementComponent::IntendTurnRight(float Throw)
 	this->LeftTrack->SetThrottile(Throw);
 	this->RightTrack->SetThrottile(-Throw);
 }
+
+void UTankMovementComponent::RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed)
+{
+	//No need to call super as we are replacing the functionality
+	auto TankForward = GetOwner()->GetActorForwardVector().GetSafeNormal();
+	auto AIForwardIntention = MoveVelocity.GetSafeNormal();
+	IntendMoveForward(FVector::DotProduct(TankForward, AIForwardIntention));
+}
