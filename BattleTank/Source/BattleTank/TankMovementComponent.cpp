@@ -6,21 +6,21 @@
 
 void UTankMovementComponent::Initialize(UTankTrack* LeftTrackToSet, UTankTrack* RightTrackToSet)
 {
-	if (!LeftTrackToSet || !RightTrackToSet) return;
+	if (!ensure(LeftTrackToSet && RightTrackToSet)) return;
 	this->LeftTrack = LeftTrackToSet;
 	this->RightTrack = RightTrackToSet;
 }
 
 void UTankMovementComponent::IntendMoveForward(float Throw)
 {
-	if (!this->LeftTrack || !this->RightTrack) return;
+	if (!ensure(this->LeftTrack && this->RightTrack)) return;
 	this->LeftTrack->SetThrottile(Throw);
 	this->RightTrack->SetThrottile(Throw);
 }
 
 void UTankMovementComponent::IntendTurnRight(float Throw)
 {
-	if (!this->LeftTrack || !this->RightTrack) return;
+	if (!ensure(this->LeftTrack && this->RightTrack)) return;
 	this->LeftTrack->SetThrottile(Throw);
 	this->RightTrack->SetThrottile(-Throw);
 }
