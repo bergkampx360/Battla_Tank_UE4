@@ -18,11 +18,18 @@ public:
 
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
-	ATank* GetControlledTank() const;
+
 	//Start the tank moving the barrel so that a shot would it where the cross hair intersects the world
 	void AimTowardsCrosshair();
-	UFUNCTION(BlueprintCallable, Category = "SunShine")
+	UFUNCTION(BlueprintCallable, Category = "Setup")
 		void SetCrossHairLocation(float X, float Y);
+
+protected:
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+		ATank* GetControlledTank() const;
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
+		void FoundAimingComponent(UTankAimingComponent* AimCompRef);
 private:
 	float CrossHairXLocation = 0.5f;
 	float CrossHairYLocation = 0.3333f;
