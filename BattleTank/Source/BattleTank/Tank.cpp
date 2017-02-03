@@ -13,12 +13,6 @@ ATank::ATank()
 	PrimaryActorTick.bCanEverTick = false;
 }
 
-void ATank::AimAt(FVector HitLocation)
-{
-	if (ensure(TankAimingComponent))
-		TankAimingComponent->AimAt(HitLocation, LaunchSpeed);
-}
-
 void ATank::Fire()
 {
 	if (!ensure(Barrel)) return;
