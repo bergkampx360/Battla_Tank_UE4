@@ -35,3 +35,9 @@ void ATank::Fire()
 	}
 }
 
+void ATank::BeginPlay()
+{
+	Super::BeginPlay();
+	TankAimingComponent = FindComponentByClass<UTankAimingComponent>();
+}
+
