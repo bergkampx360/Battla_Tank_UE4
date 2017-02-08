@@ -40,7 +40,8 @@ void ATankPlayerController::AimTowardsCrosshair()
 	auto TankAimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
 	if (!ensure(TankAimingComponent)) return;
 	FVector HitLocation;	//Out parameter
-	if (GetSightRayHitLocation(HitLocation)) //Has a side-effect is going to line trace
+	bool bGotHitLocation = GetSightRayHitLocation(HitLocation);
+	if (bGotHitLocation) //Has a side-effect is going to line trace
 	{
 		//Aim at this point
 		TankAimingComponent->AimAt(HitLocation);
