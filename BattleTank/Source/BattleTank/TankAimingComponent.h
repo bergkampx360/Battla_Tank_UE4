@@ -29,7 +29,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Firing")
 		void Fire();
 	UFUNCTION(BlueprintCallable, Category = "State")
-		int GetAmmoCount() const;
+		int32 GetAmmoCount() const;
 	void AimAt(FVector HitLocation);
 	EFiringState GetFiringState() const;
 protected:
@@ -47,7 +47,8 @@ private:
 		TSubclassOf<AProjectile> ProjectileBlueprint;
 	double LastFireTime = 0;
 	FVector AimDirection;
-	int AmmoCount = 3;
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+		int32 AmmoCount = 3;
 
 	UTankAimingComponent();
 	virtual void BeginPlay() override;
