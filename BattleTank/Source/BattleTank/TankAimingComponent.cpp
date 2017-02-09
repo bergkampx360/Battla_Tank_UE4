@@ -53,7 +53,7 @@ void UTankAimingComponent::Initialize(UTankBarrel* BarrelToSet, UTankTurret* Tur
 
 void UTankAimingComponent::Fire()
 {
-	if (FiringState == EFiringState::Locked && FiringState == EFiringState::Aiming) {
+	if (FiringState == EFiringState::Locked || FiringState == EFiringState::Aiming) {
 		if (!ensure(Barrel)) return;
 		if (!ensure(ProjectileBlueprint)) return;
 		//Spawn projectile at the socket location of barrel
@@ -112,7 +112,7 @@ void UTankAimingComponent::MoveTurretTowards()
 	auto TurretRotator = Turret->GetForwardVector().Rotation();
 	auto AimAsRotator = AimDirection.Rotation();
 	auto DeltaRotator = AimAsRotator - TurretRotator;
-	if (DeltaRotator.Yaw < 180) {
+	if (FMath::Abs(DeltaRotator.Yaw) < 180) {
 		Turret->Rotate(DeltaRotator.Yaw);
 	}
 	else {
