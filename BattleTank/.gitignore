@@ -62,8 +62,5 @@ Intermediate/*
 # Cache files for the editor to use
 DerivedDataCache/*
 
-#Ignore StarterContent
-Content/StarterContent/*
-
 #Igrone Visual Studio intellisense cache
 ipch
