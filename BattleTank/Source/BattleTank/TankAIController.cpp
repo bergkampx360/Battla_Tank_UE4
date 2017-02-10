@@ -2,6 +2,7 @@
 
 #include "BattleTank.h"
 #include "TankAimingComponent.h"
+#include "Tank.h"
 #include "TankAIController.h"
 
 void ATankAIController::Tick(float DeltaTime)
@@ -20,4 +21,22 @@ void ATankAIController::Tick(float DeltaTime)
 		TankAimingComponent->AimAt(PlayerTank->GetActorLocation());
 		if (TankAimingComponent->GetFiringState() == EFiringState::Locked) TankAimingComponent->Fire(); //TODO: limit firing rate
 	}
+}
+
+void ATankAIController::SetPawn(APawn* InPawn)
+{
+	Super::SetPawn(InPawn);
+	if (InPawn)
+	{
+		auto PossessedTank = Cast<ATank>(InPawn);
+		if (!ensure(PossessedTank)) return;
+
+		//Subscribe our local method to the tank's death event
+		PossessedTank->OnDeath.AddUniqueDynamic(this, &ATankAIController::HandleOnDeathEvent);
+	}
+}
+
+void ATankAIController::HandleOnDeathEvent()
+{
+	UE_LOG(LogTemp, Warning, TEXT("HandleOnDeathEvent called"))
 }
