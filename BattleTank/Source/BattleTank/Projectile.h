@@ -22,6 +22,8 @@ public:
 
 	void LaunchProjectile(float Speed);
 protected:
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+		float DestroyDelay = 3.0f;
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 		UStaticMeshComponent* CollisionMesh = nullptr;
 	UPROPERTY(VisibleAnywhere, Category = "Components")
@@ -34,4 +36,5 @@ private:
 	UProjectileMovementComponent* ProjectileMovement = nullptr;
 	UFUNCTION()
 		void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
+	void OnTimerExpire();
 };
