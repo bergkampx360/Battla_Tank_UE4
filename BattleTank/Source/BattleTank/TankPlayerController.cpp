@@ -110,7 +110,7 @@ void ATankPlayerController::SetPawn(APawn* InPawn)
 
 void ATankPlayerController::HandleOnDeathEvent()
 {
-	UE_LOG(LogTemp, Warning, TEXT("HandleOnDeathEvent called"))
+	StartSpectatingOnly();
 }
 
 #pragma endregion

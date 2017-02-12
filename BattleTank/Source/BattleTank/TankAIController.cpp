@@ -38,5 +38,6 @@ void ATankAIController::SetPawn(APawn* InPawn)
 
 void ATankAIController::HandleOnDeathEvent()
 {
-	UE_LOG(LogTemp, Warning, TEXT("HandleOnDeathEvent called"))
+	if (!ensure(GetPawn())) return;
+	GetPawn()->DetachFromControllerPendingDestroy();
 }
